@@ -11,7 +11,7 @@
 
   Create a new folder inside the 'public" folder. You can call it "private" and add a copy of your main html, css and js file. Go to `localhost:3000/private ` to make sure it is working
 
-- STEP 2: Create a unique Namespace for this new page on the Server
+- STEP 2: Create a unique namespace for this new page on the Server
 
   On the server, add the following code to index.js:
   ``` 
@@ -19,7 +19,7 @@
   let private = io.of('/private');
   ```
 
-- STEP 3: Create a unique Namespace for this new page on the Client
+- STEP 3: Create a unique namespace for this new page on the Client
 
   On the client, add the following code to the js file inside the private folder:
   ```
@@ -27,7 +27,7 @@
   let socket = io('/private');
   ```
 
-- STEP 4: Update the logic for this Namespace
+- STEP 4: Update the logic for this "priavte" namespace
 
   On the server, you can copy the entire `io.on()` function and then change `io` to `private`. 
 
@@ -36,7 +36,7 @@
 
 - STEP 5: Create a way for the user to input a room name
 
-  On the client, you can use `window.prompt` to collect the user's room
+  On the client, you can use `window.prompt()` to collect the user's room
 
   ```
   //Get room name
@@ -45,7 +45,7 @@
 
 - STEP 6: Send the room name to the Server 
 
-  Add the following code after the `window.prompt` code
+  Add the following code after the `window.prompt()` code
   ```
   //Check if a name was entered
   if (roomName){
@@ -57,7 +57,7 @@
   }
   ```
 
-- STEP 7: Receive the room name on the Server
+- STEP 7: Receive the room name on the Server within the "private" namespace
 
   ```
   socket.on('room', (data) => {
