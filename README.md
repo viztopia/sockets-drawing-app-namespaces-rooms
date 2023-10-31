@@ -2,7 +2,7 @@
 ### Adding Namespaces and Rooms
 -----
 ### Local Setup
-- `cd` via the commnad line to the project folder
+- `cd` via the command line to the project folder
 - Run `npm install` to load dependencies listed in package.json
 - Open two browser windows both pointing to `localhost:3000` to make sure the app is working
 -----
