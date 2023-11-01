@@ -64,7 +64,7 @@
     console.log(data.room);
     let roomName = data.room;
 
-    //Code for Steps 7 & 8 go here
+    //Code for Steps 8 & 9 go here
 
   });
   ```
