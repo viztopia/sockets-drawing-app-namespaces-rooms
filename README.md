@@ -14,24 +14,26 @@
 
 ### PART 2 - NAMESPACES
 5. **CLIENT** - Create a new page for "private" drawing. 
-  - Create a new folder inside the 'public" folder. You can name it "private".
-  - Add a copy of your main html, css and js files to this folder.
-  - Go to `localhost:3000/private` to make sure it is working
-6. **CLIENT** - Create a unique namespace for this new private page. On the client, add the following code to the js file inside the private folder:
+    - Create a new folder inside the "public" folder. You can name it "private".
+    - Add a copies of the public html, css and js files to this folder.
+    - Go to `localhost:3000/private` to make sure it is working.
+6. **CLIENT** - Create a unique namespace for this new private page. Add the following code to the js file inside the private folder:
 ```
 //Open and connect socket to private namespace
 let socket = io('/private');
 ```
-7. **SERVER** - Create a unique namespace for the new private page. On the server, add the following code to index.js:
+7. **SERVER** - Create a unique namespace for the new private page. Add the following code to index.js:
 ``` 
 //Create another namespace named 'private'
 let private = io.of('/private');
 ```
-8. **SERVER** - Update the logic for this "priavte" namespace. On the server, you can copy the entire `io.on()` function and then change `io` to `private`.  `io.on` should be changed `private.on` and `io.emit` should be changed to `private.emit`
+8. **SERVER** - Update the logic for this "priavte" namespace
+    - Copy the entire `io.on()` function and then change `io` to `private`.
+    - `io.on` should be changed to `private.on` and `io.emit` should be changed to `private.emit`
 
 ----
 ### PART 3 - ROOMS
-9: **CLIENT** - Allow user to create or join a room. You can use `window.prompt()` as a way to input a room name.
+9: **CLIENT** - Allow users to create or join a room. You can use `window.prompt()` to input a room name.
 ```
 //Input room name
 let roomName = window.prompt("Create or Join a room");
@@ -69,9 +71,9 @@ socket.room = roomName;
 socket.join(roomName);
 ```
 14. **SERVER** - (OPTIONAL) Send a message to the client confirming the newly joined socket
-15. **SERVER** - Update the `.emit()` functions in the private namespace on the server to send data to the appropriate room
+15. **SERVER** - Update any `.emit()` functions in the private namespace to send data to the appropriate room
 ```
 let currentRoom = socket.room
 private.to(currentRoom).emit('message-share', data);
 ```
-Note, `'message-share'` was the name we assigned to the emit. You can name it whatever you like. You just need to make sure it is named the same on the receiving side in the `.on()` on the Client.
+Note, `'message-share'` was the name we assigned to the emit. You can assign any name you like, you just need to make sure it is named the same in the `.on()` on the Client.
