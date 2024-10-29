@@ -12,6 +12,7 @@
 3. Run `npm install` to load dependencies listed in package.json
 4. Open two browser windows both pointing to `localhost:3000` to make sure the app is working
 
+----
 ### PART 2 - NAMESPACES
 5. **CLIENT** - Create a new page for "private" drawing. 
     - Create a new folder inside the "public" folder. You can name it "private".
