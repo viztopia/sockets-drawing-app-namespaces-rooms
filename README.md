@@ -19,7 +19,9 @@
     - Add a copies of the public html, css and js files to this folder.
     - Rename `app.js` to to `app_private.js` and update the `index.html` file to point to this js file.
     - Go to `localhost:3000/private` to make sure it is working.
+
 6. **CLIENT** - Create a unique namespace for this new private page. Replace `let socket = io()` with `let socket = io('/private');`
+
 7. **SERVER** - Create a unique namespace for the new private page. Add the following code to index.js:
 ``` 
 //Create another namespace named 'private'
