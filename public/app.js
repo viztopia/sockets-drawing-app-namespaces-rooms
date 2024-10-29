@@ -1,81 +1,60 @@
+console.log("Hello!");
+
+//Initialize and connect socket
 let socket = io();
 
-//Listen for confirmation of conection
+//Listen for confirmation of connection
 socket.on('connect', () => {
-    console.log("Connected!");
+    console.log("Connected");
 });
 
-let myR;
-let myG;
-let myB;
+//Listen for an event named 'message-share' from the server
+socket.on('message-share', (data) => {
+    //console.log(data);
+    drawEllipse(data);
+});
+
+//In global scope
+let myRed, myGreen, myBlue;
+let myDiameter;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    background(255);
 
-    noStroke();
+    //Inside setup
+    //Generate random fill values
+    myRed = random(0, 255);
+    myGreen = random(0, 255)
+    myBlue = random(0, 255);
 
-    //create random integer values for this client's color
-    myR = random(255);
-    myG = random(255);
-    myB = random(255);
-
-    //Listen for a message from the server
-    socket.on('dataAll', (obj) => {
-        console.log("DataAll message received!!!")
-        console.log(obj);
-        drawPos(obj);
-    });
-
-    //Listen for a message from the server
-    socket.on('pressedAll', (obj) => {
-        console.log("PressedAll message received!!!")
-        console.log(obj);
-        drawPress(obj);
-    });
-}
-
-function draw() {
+    //Generate random ellipse size
+    myDiameter = random(5, 50);
 }
 
 function mouseMoved() {
-    // fill(0);
-    // ellipse(mouseX, mouseY, 10,10);
+    //Grab mouse position
+    //let mouseData = { x: mouseX, y: mouseY };
 
-    let mousePos = {
+    let mouseData = {
         x: mouseX,
         y: mouseY,
-        r: myR,
-        g: myG,
-        b: myB
+        r: myRed,
+        g: myGreen,
+        b: myBlue,
+        d: myDiameter
     };
 
-    //Send a message to the server
-    socket.emit('data', mousePos);
+    //Send mouse data object to the server
+    socket.emit('message', mouseData);
+
+    //Draw yourself? Wait for server?
+    //fill(0);
+    //ellipse(mouseX, mouseY, 10, 10);
 }
 
-function mousePressed() {
-    let pressPos = {
-        x: mouseX,
-        y: mouseY,
-        r: myR,
-        g: myG,
-        b: myB
-    };
-    //Send a message to the server
-    socket.emit('pressed', pressPos);
-}
-
-/*----- Functions to be called when clientside .on() events occur -----*/
-
-//This will be called when a "dataAll" msg is received on the client
-function drawPos(posObj) {
-    fill(posObj.r, posObj.g, posObj.b);
-    ellipse(posObj.x, posObj.y, 10, 10);
-}
-
-//This will be called when a "pressedAll" msg is received on the client
-function drawPress(pressObj) {
-    fill(pressObj.r, pressObj.g, pressObj.b);
-    ellipse(width / 2, height / 2, 100, 100);
+//Expects an object with x and y properties
+function drawEllipse(obj) {
+    fill(obj.r, obj.g, obj.b);
+    noStroke();
+    ellipse(obj.x, obj.y, obj.d, obj.d);
 }

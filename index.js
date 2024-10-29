@@ -4,41 +4,33 @@ let app = express();
 
 app.use("/", express.static("public"));
 
-//Initialize the actual HTTP server
+//Initialize HTTP server
 let http = require("http");
 let server = http.createServer(app);
+
+//Initialize socket.io
+let io = require("socket.io");
+io = new io.Server(server);
 
 //'port' variable allows for deployment
 let port = process.env.PORT || 3000;
 server.listen(port, () => {
-  console.log("Server listening at port: " + port);
+  console.log("App listening at port: " + port);
 });
 
-//Socket.io Code
-//Iniitialize socket.io
-let io = require("socket.io");
-io = new io.Server(server);
-
-//Listen for client connection
+//Listen for a client to connect and disconnect
 io.on("connection", (socket) => {
-  console.log("We have a connection!");
-  console.log(socket.id);
+  console.log("We have a new client: " + socket.id);
 
-  //Listen for client events
+  //Listen for messages from the client
 
-  socket.on('data', (data) => {
-    console.log("Data msg received!");
-    console.log(data);
+  //Listen for an event named 'message' from client
+  socket.on('message', (data) => {
+    console.log("Received 'message' with the following data:");
+    //console.log(data);
 
-    //Send msg to ALL clients
-    io.emit('dataAll', data);
-  });
-
-  socket.on('pressed', (data) => {
-    console.log("Pressed msg received!");
-    console.log(data);
-    //Send msg to ALL clients
-    io.emit('pressedAll', data);
+    //Send data to ALL clients, including this one
+    io.emit('message-share', data);
   });
 
   //Listen for this client to disconnect

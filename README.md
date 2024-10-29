@@ -1,4 +1,4 @@
-## Socekt.io - Drawing App Starter Continued
+## Socekt.io - Drawing App Continued
 ### Adding Namespaces and Rooms
 -----
 ### Local Setup
