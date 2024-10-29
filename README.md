@@ -20,7 +20,9 @@
     - Rename `app.js` to to `app_private.js` and update the `index.html` file to point to this js file.
     - Go to `localhost:3000/private` to make sure it is working.
 
-6. **CLIENT** - Create a unique namespace for this new private page. Replace `let socket = io()` with `let socket = io('/private');`
+6. **CLIENT** - Create a unique namespace for this new private page. 
+
+Replace `let socket = io();` with `let socket = io('/private');`
 
 7. **SERVER** - Create a unique namespace for the new private page. Add the following code to index.js:
 ``` 
@@ -39,7 +41,7 @@ let private = io.of('/private');
 let roomName = window.prompt("Create or Join a room");
 console.log(roomName);
 ```
-10: **CLIENT** - Send the room name to the Server. Add the following code after the `window.prompt()` code:
+10: **CLIENT** - Send the room name to the Server. Add this code inside the `.on('connect')` once the socket connection is confirmed.
 ```
 //Check if a name was entered
 if (roomName){
