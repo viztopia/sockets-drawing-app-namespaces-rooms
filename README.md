@@ -16,7 +16,7 @@
 ### PART 2 - NAMESPACES
 5. **CLIENT** - Create a new page for "private" drawing. 
     - Create a new folder inside the "public" folder. You can name it "private".
-    - Add a copies of the public html, css and js files to this folder.
+    - Make copies of the current html, css and js files in the public folder and place them in this folder.
     - Rename `app.js` to to `app_private.js` and update the `index.html` file to point to this js file.
     - Go to `localhost:3000/private` to make sure it is working.
 
