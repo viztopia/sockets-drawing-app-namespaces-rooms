@@ -22,7 +22,7 @@
 
 6. **CLIENT** - Create a unique namespace for this new private page. 
 
-Replace `let socket = io();` with `let socket = io('/private');`
+    - Replace `let socket = io();` with `let socket = io('/private');`
 
 7. **SERVER** - Create a unique namespace for the new private page. Add the following code to index.js:
 ``` 
@@ -35,13 +35,13 @@ let private = io.of('/private');
 
 ----
 ### PART 3 - ROOMS
-9: **CLIENT** - Allow users to create or join a room. You can use `window.prompt()` to input a room name.
+9. **CLIENT** - Allow users to create or join a room. You can use `window.prompt()` to input a room name.
 ```
 //Input room name
 let roomName = window.prompt("Create or Join a room");
 console.log(roomName);
 ```
-10: **CLIENT** - Send the room name to the Server. Add this code inside the `.on('connect')` once the socket connection is confirmed.
+10. **CLIENT** - Send the room name to the Server. Add this code inside the `.on('connect')` once the socket connection is confirmed.
 ```
 //Check if a name was entered
 if (roomName){
@@ -52,7 +52,7 @@ else {
     alert("Please refresh and enter a room name");
 }
 ```
-11: **SERVER** - Receive the room name on the Server within the **private** namespace
+11. **SERVER** - Receive the room name on the Server within the **private** namespace
 ```
 socket.on('room', (data) => {
   console.log(data.room);
