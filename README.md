@@ -81,26 +81,7 @@ private.to(currentRoom).emit('message-share', data);
 Note, `'message-share'` was the name we assigned to the emit. You can assign any name you like, you just need to make sure it is named the same in the `.on()` on the Client.
 
 ----
-### PART 4 - PUSH TO GITHUB USING GIT
-16. Create a local git repository
-- `git status -s`
-- `git init`
-- `git status -s`
-- `git add -A`
-- `git status -s`
-- `git commit -m"Initial commit"`
-
-17. Create a remote git repository on Github
-- Default is `Public`
-- No need to generate a `README.md`, `.gitignore` or a license since we already have them. 
-- Once created, we will use the **"or push an existing repository from the command line"** option. See next Step.
-
-18. Connect local git repo to remote Github repo
-- `git remote add origin <url>`
-- `git branch -M main`
-- `git push -u origin main`
+### PART 4 - PUSH TO GITHUB USING VS CODE SRC CONTROL
 
 ----
-### PART 5 - DEPLOY TO GLITCH
-19. On Gtihub, copy https `.git` url from Github
-20. On Glitch, create a new project using "Import from Github". Paste in `.git` url from Github
+### PART 5 - DEPLOY TO RENDER
